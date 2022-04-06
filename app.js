@@ -1,7 +1,8 @@
 'use strict';
 
 const Hapi = require('@hapi/hapi');
-const Boom = require('boom');
+
+const posts = require('./routes/posts')
 
 const server = Hapi.server({
     port: 3000,
@@ -23,19 +24,7 @@ const init = async () => {
     server.route({
         method: 'GET',
         path: '/{id}',
-        handler: async (request) => {
-            const db = request.mongo.db;
-            const ObjectID = request.mongo.ObjectID;
-
-            try {
-                const result = await db.collection('posts').findOne({  _id: new ObjectID(request.params.id) });
-                console.log(result)
-                return result
-            }
-            catch (err) {
-                throw Boom.internal('Internal MongoDB error', err);
-            }
-        }
+        handler: posts.getPostById
     });
 
     await server.start();
