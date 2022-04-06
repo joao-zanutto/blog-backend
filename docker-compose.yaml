@@ -1,0 +1,24 @@
+version: '2'
+services:
+
+  hapi-server:
+    build: .
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+
+  mongo:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_INITDB_DATABASE=project
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:
+    driver: local
