@@ -21,11 +21,9 @@ const init = async () => {
         options: dbOpts
     })
 
-    server.route({
-        method: 'GET',
-        path: '/{id}',
-        handler: posts.getPostById
-    });
+    server.route(posts.getPostById);
+    server.route(posts.getAllPosts);
+    server.route(posts.createPost);
 
     await server.start();
     console.log('Server running on %s', server.info.uri);

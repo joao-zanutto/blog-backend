@@ -1,15 +1,19 @@
-const Boom = require('boom');
+const posts = require("./handlers/posts")
 
-exports.getPostById = async (request) => {
-    const db = request.mongo.db;
-            const ObjectID = request.mongo.ObjectID;
+exports.getPostById = {
+    method: 'GET',
+    path: '/posts/{id}',
+    handler: posts.getPostById
+};
 
-            try {
-                const result = await db.collection('posts').findOne({  _id: new ObjectID(request.params.id) });
-                return result
-            }
-            catch (err) {
-                throw Boom.internal('Internal MongoDB error', err);
-            }
-}
+exports.getAllPosts = {
+    method: 'GET',
+    path: '/posts',
+    handler: posts.getAllPosts
+};
 
+exports.createPost = {
+    method: 'POST',
+    path: '/posts',
+    handler: posts.createPost
+};
