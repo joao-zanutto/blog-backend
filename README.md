@@ -42,3 +42,9 @@ npm run dev
 # or
 yarn dev
 ```
+
+## Useful links
+
+https://hapi.dev/tutorials
+
+https://www.mongodb.com/developer/how-to/hapijs-nodejs-driver/
