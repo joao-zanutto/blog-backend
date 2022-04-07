@@ -1,5 +1,5 @@
 FROM node:16
-COPY package.json /app/package.json
+COPY . /app
 WORKDIR /app
 RUN yarn install
 ENTRYPOINT [ "yarn", "start" ]
